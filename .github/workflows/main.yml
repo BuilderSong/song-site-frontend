@@ -12,17 +12,6 @@ jobs:
      - name: Checkout repository
        uses: actions/checkout@v2
 
-     - name: Set up Node.js
-       uses: actions/setup-node@v2
-       with:
-        node-version: 16
-
-     - name: Install dependencies
-       run: npm install
-
-     - name: Build
-       run: npm run build
-
      - name: Configure AWS credentials
        uses: aws-actions/configure-aws-credentials@v1
        with:
@@ -42,21 +31,11 @@ jobs:
         docker tag song-site-frontend:latest 777930584266.dkr.ecr.us-west-2.amazonaws.com/song-site-frontend:latest
         docker push 777930584266.dkr.ecr.us-west-2.amazonaws.com/song-site-frontend:latest
 
-    #  - name: Install AWS CLI
-    #    run: |
-    #     curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    #     unzip awscliv2.zip
-    #     sudo ./aws/install
-
-    #  - name: Verify AWS CLI installation
-    #    run: aws --version
-
      - name: Deploy to Lambda
        run: |
         aws lambda create-function \
           --function-name song-site-frontend-lambda \
-          --runtime nodejs16.x \
-          --handler index.handler \
+          --package-type Image \
           --role ${{ secrets.AWS_IAM_ROLE }} \
           --code ImageUri=777930584266.dkr.ecr.us-west-2.amazonaws.com/song-site-frontend:latest
 
