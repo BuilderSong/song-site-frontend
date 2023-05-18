@@ -1,6 +1,10 @@
 # Use an official Node.js runtime as a parent image
 FROM node
 
+EXPOSE 80
+
+EXPOSE 443
+
 # Set the working directory to /app
 WORKDIR /app
 

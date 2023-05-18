@@ -56,7 +56,4 @@ jobs:
 
      - name: Create URL endpoint
        run: |
-        aws lambda get-function --function-name song-site-frontend-lambda --query 'Configuration.Endpoint'
-     
-     - name: Cleanup
-       run: rm build.zip
+        aws lambda get-function-configuration --function-name song-site-frontend-lambda
