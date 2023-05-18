@@ -12,6 +12,10 @@ jobs:
      - name: Checkout repository
        uses: actions/checkout@v2
 
+     - name: Remove .gitignore
+       run: |
+        rm .gitignore
+
      - name: Configure AWS credentials
        uses: aws-actions/configure-aws-credentials@v1
        with:
