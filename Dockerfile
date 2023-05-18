@@ -1,3 +1,4 @@
+# this is not used by the deployment, sicne we are using amplify
 # Use an official Node.js runtime as a parent image
 FROM node
 
