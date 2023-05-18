@@ -29,6 +29,18 @@ jobs:
          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
          aws-region: us-west-2
+     
+     - name: Login to AWS ECR
+     id: login-ecr
+     uses: aws-actions/amazon-ecr-login@v1
+
+
+     - name: Build, tag and push backend image
+     run: |
+      aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 777930584266.dkr.ecr.us-west-2.amazonaws.com
+      docker build -t song-site-frontend .
+      docker tag song-site-frontend:latest 777930584266.dkr.ecr.us-west-2.amazonaws.com/song-site-frontend:latest
+      docker push 777930584266.dkr.ecr.us-west-2.amazonaws.com/song-site-frontend:latest
 
     #  - name: Install AWS CLI
     #    run: |
@@ -44,9 +56,28 @@ jobs:
         aws lambda create-function \
           --function-name song-site-frontend-lambda \
           --runtime nodejs16.x \
-          --zip-file fileb://build.zip \
           --handler index.handler \
-          --role ${{ secrets.AWS_IAM_ROLE }}
+          --role ${{ secrets.AWS_IAM_ROLE }} \
+          --code ImageUri=777930584266.dkr.ecr.us-west-2.amazonaws.com/song-site-frontend:latest
 
+     - name: add lambda permission
+       run: |
+        aws lambda add-permission \
+        --function-name song-site-frontend-lambda \
+        --action lambda:InvokeFunctionUrl \
+        --principal "*" \
+        --function-url-auth-type "NONE" \
+        --statement-id url
+
+     - name: Create URL endpoint
+       run: |
+        aws lambda create-function-url-config \
+        --function-name song-site-frontend-lambda \
+        --auth-type NONE
+
+     - name: Create URL endpoint
+       run: |
+        aws lambda get-function --function-name song-site-frontend-lambda --query 'Configuration.Endpoint'
+     
      - name: Cleanup
        run: rm build.zip
