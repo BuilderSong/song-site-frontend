@@ -30,20 +30,20 @@ jobs:
          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
          aws-region: us-west-2
 
-     - name: Install AWS CLI
-       run: |
-        curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-        unzip awscliv2.zip
-        sudo ./aws/install
+    #  - name: Install AWS CLI
+    #    run: |
+    #     curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    #     unzip awscliv2.zip
+    #     sudo ./aws/install
 
-     - name: Verify AWS CLI installation
-       run: aws --version
+    #  - name: Verify AWS CLI installation
+    #    run: aws --version
 
      - name: Deploy to Lambda
        run: |
         aws lambda create-function \
           --function-name song-site-frontend-lambda \
-          --runtime nodejs14.x \
+          --runtime nodejs16.x \
           --zip-file fileb://build.zip \
           --handler index.handler \
           --role ${{ secrets.AWS_IAM_ROLE }}
