@@ -31,16 +31,16 @@ jobs:
          aws-region: us-west-2
      
      - name: Login to AWS ECR
-     id: login-ecr
-     uses: aws-actions/amazon-ecr-login@v1
+       id: login-ecr
+       uses: aws-actions/amazon-ecr-login@v1
 
 
      - name: Build, tag and push backend image
-     run: |
-      aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 777930584266.dkr.ecr.us-west-2.amazonaws.com
-      docker build -t song-site-frontend .
-      docker tag song-site-frontend:latest 777930584266.dkr.ecr.us-west-2.amazonaws.com/song-site-frontend:latest
-      docker push 777930584266.dkr.ecr.us-west-2.amazonaws.com/song-site-frontend:latest
+       run: |
+        aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 777930584266.dkr.ecr.us-west-2.amazonaws.com
+        docker build -t song-site-frontend .
+        docker tag song-site-frontend:latest 777930584266.dkr.ecr.us-west-2.amazonaws.com/song-site-frontend:latest
+        docker push 777930584266.dkr.ecr.us-west-2.amazonaws.com/song-site-frontend:latest
 
     #  - name: Install AWS CLI
     #    run: |
