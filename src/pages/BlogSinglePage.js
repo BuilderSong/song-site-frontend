@@ -19,17 +19,21 @@ function BlogSinglePage() {
         if (response.data.post) {
           // console.log(response.data.post)
           setPost(response.data.post)
+          var codeBlocks = document.querySelectorAll('.ql-syntax')
+          for (let i = 0; i < codeBlocks.length; i++) {
+            hljs.highlightElement(codeBlocks[i])
+          }
         } else {
           alert('failed to load post')
         }
       });
 
-    setTimeout(() => {
-      var codeBlocks = document.querySelectorAll('.ql-syntax')
-      for (let i = 0; i < codeBlocks.length; i++) {
-        hljs.highlightElement(codeBlocks[i])
-      }
-    }, 400);
+    // setTimeout(() => {
+    //   var codeBlocks = document.querySelectorAll('.ql-syntax')
+    //   for (let i = 0; i < codeBlocks.length; i++) {
+    //     hljs.highlightElement(codeBlocks[i])
+    //   }
+    // }, 400);
   }
 
   const [post, setPost] = useState([]);
