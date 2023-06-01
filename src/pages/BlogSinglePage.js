@@ -43,14 +43,14 @@ function BlogSinglePage() {
       <div>
         <Navigation />
         {/* <div className='flex flex-col justify-center items-center mx-14 mb-8 md:mx-10 lg:mx-12'> */}
-        <h1 className="flex justify-start my-5 md:text-2xl md:justify-center lg:text-3xl">{post.Title}</h1>
+        <h1 className="flex justify-start mx-1 my-5 md:text-2xl md:justify-center lg:text-3xl">{post.Title}</h1>
 
-        <div className='flex justify-start gap-8 mb-4 md:justify-center'>
+        <div className='flex justify-start gap-6 mx-2 mb-4 md:justify-center'>
           <span className='flex items-center gap-2'><TopicIcon /> <p className='text-lg'>{post.Topic}</p></span>
           <span className='flex items-center gap-2'><AccessTimeIcon /> <p className='text-lg'>{post.CreatedAt.slice(0, 10)}</p></span>
         </div>
 
-        <div className='mx-6 mb-10 md:mx-10 lg:mx-12' >
+        <div className='mx-2 mb-10 md:mx-10 lg:mx-12' >
           <div dangerouslySetInnerHTML={{ __html: post.Body }} />
         </div>
         {/* </div> */}
