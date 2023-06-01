@@ -44,11 +44,11 @@ const Subscribe = () => {
   return (
     <div className="flex flex-col justify-between items-center min-h-screen">
       <Navigation />
-      <div className="flex flex-col items-center justify-center w-3/5">
+      <div className="flex flex-col items-center justify-center w-5/5">
         <h1 className="text-xl md:text-4xl font-semibold leading-9 text-center">Don&apos;t miss out!</h1>
         <p className="text-sm md:text-lg leading-normal text-center mt-6">
           Welcome to subscribe! <br />
-          The newsletter is sent when new blog is posted. <br />
+          Newsletter is sent when new blog is posted. <br />
           You can unsubscribe it anytime.
         </p>
         <form className="flex flex-col text-xl my-4 items-start gap-1" onSubmit={handleSubmit}>

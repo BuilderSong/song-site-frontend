@@ -29,7 +29,7 @@ const UnSubscribe = () => {
   return (
     <div className="flex flex-col justify-between items-center min-h-screen">
       <Navigation />
-      <div className="flex flex-col items-center justify-center w-3/5">
+      <div className="flex flex-col items-center justify-center w-5/5">
         <p className="text-xl md:text-4xl font-semibold leading-9 text-center mb-10">Type your email to unsubscribe</p>
         <form className="flex flex-col text-xl my-4 items-start gap-1" onSubmit={handleSubmit}>
           <label htmlFor="email">Your Email</label>
