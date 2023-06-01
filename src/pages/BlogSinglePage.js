@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-// import '../styles/BlogSingle.css'
+import '../styles/BlogSingle.css'
 import 'react-quill/dist/quill.snow.css';
 import { getSinglePost } from '../controllers/posts';
 import hljs from 'highlight.js';
