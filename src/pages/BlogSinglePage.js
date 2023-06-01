@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import '../styles/BlogSingle.css'
+// import '../styles/BlogSingle.css'
 import 'react-quill/dist/quill.snow.css';
 import { getSinglePost } from '../controllers/posts';
 import hljs from 'highlight.js';
@@ -20,7 +20,7 @@ function BlogSinglePage() {
           // console.log(response.data.post)
           setPost(response.data.post)
         } else {
-          alert('Couldnt get post')
+          alert('failed to load post')
         }
       });
 
@@ -29,7 +29,7 @@ function BlogSinglePage() {
       for (let i = 0; i < codeBlocks.length; i++) {
         hljs.highlightElement(codeBlocks[i])
       }
-    }, 200);
+    }, 400);
   }
 
   const [post, setPost] = useState([]);
@@ -43,14 +43,14 @@ function BlogSinglePage() {
       <div>
         <Navigation />
         {/* <div className='flex flex-col justify-center items-center mx-14 mb-8 md:mx-10 lg:mx-12'> */}
-        <h1 className="my-5 md:text-2xl md:items-center lg:text-3xl lg:items-center">{post.Title}</h1>
+        <h1 className="flex justify-start my-5 md:text-2xl md:justify-center lg:text-3xl">{post.Title}</h1>
 
         <div className='flex justify-start gap-8 mb-4 md:justify-center'>
           <span className='flex items-center gap-2'><TopicIcon /> <p className='text-lg'>{post.Topic}</p></span>
           <span className='flex items-center gap-2'><AccessTimeIcon /> <p className='text-lg'>{post.CreatedAt.slice(0, 10)}</p></span>
         </div>
 
-        <div className='mx-6 mb-8 md:mx-10 lg:mx-12' >
+        <div className='mx-6 mb-10 md:mx-10 lg:mx-12' >
           <div dangerouslySetInnerHTML={{ __html: post.Body }} />
         </div>
         {/* </div> */}
