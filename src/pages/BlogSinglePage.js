@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import '../styles/BlogSingle.css'
+import 'react-quill/dist/quill.snow.css';
 import { getSinglePost } from '../controllers/posts';
 import hljs from 'highlight.js';
 import '../styles/dracula.css';
@@ -37,12 +38,6 @@ function BlogSinglePage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(preload_func, [])
 
-  const styleObj = {
-    overflowWrap: 'anywhere',
-    backgroundColor: 'red',
-    wordBreak: 'break-all'
-  };
-
   if (post.Title) {
     return (
       <div>
@@ -55,7 +50,7 @@ function BlogSinglePage() {
             <span className='flex items-center gap-2'><AccessTimeIcon /> <p className='text-lg'>{post.CreatedAt.slice(0, 10)}</p></span>
           </div>
 
-          <div dangerouslySetInnerHTML={{ __html: post.Body }} style={styleObj} />
+          <div dangerouslySetInnerHTML={{ __html: post.Body }} />
         </div>
         <Footer />
       </div>
