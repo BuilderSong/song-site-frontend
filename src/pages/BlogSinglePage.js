@@ -38,15 +38,16 @@ function BlogSinglePage() {
   useEffect(preload_func, [])
 
   const styleObj = {
-    overflowWrap: 'break-word',
-    backgroundColor: 'red'
+    overflowWrap: 'anywhere',
+    backgroundColor: 'red',
+    wordBreak: 'break-all'
   };
 
   if (post.Title) {
     return (
       <div>
         <Navigation />
-        <div className='flex flex-col justify-center items-center mx-6 mb-8 md:mx-10 lg:mx-12'>
+        <div className='flex flex-col justify-center items-center mx-14 mb-8 md:mx-10 lg:mx-12'>
           <h1 className="my-5 md:text-2xl lg:text-3xl">{post.Title}</h1>
 
           <div className='flex justify-start gap-8 mb-4 md:justify-center'>
