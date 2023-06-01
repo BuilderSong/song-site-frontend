@@ -41,7 +41,7 @@ function BlogSinglePage() {
     return (
       <div>
         <Navigation />
-        <div className='flex flex-col justify-center items-center mx-2 md:mx-4 lg:mx-6'>
+        <div className='flex flex-col justify-center items-center mx-6 md:mx-8 lg:mx-10'>
           <h1 className="my-5 md:text-2xl lg:text-3xl">{post.Title}</h1>
 
           <div className='flex justify-start gap-8 mb-4 md:justify-center'>

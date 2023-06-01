@@ -46,7 +46,7 @@ const BlogCard = ({ title, image, abstract, topic, time, id, body }) => {
   }
 
   return (
-    <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-xs overflow-hidden pt-2 h-fit hover:shadow-2xl" onClick={(e) => e.currentTarget === e.target && navigate(`/blog/${id}`)}>
+    <div className="bg-white shadow-md border border-gray-200 rounded-lg max-w-xs overflow-hidden pt-2 h-fit hover:shadow-2xl" onClick={(e) => navigate(`/blog/${id}`) && e.stopPropagation()}>
       <img className="rounded-lg" src={image} alt={title} />
       <div className="m-2">
         <h4 className='leading-tight text-left'>{title}</h4>
