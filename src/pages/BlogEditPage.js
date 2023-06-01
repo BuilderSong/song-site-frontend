@@ -40,12 +40,14 @@ const BlogEditPage = () => {
   };
 
   function handleUpdate(e) {
-    e.preventDefault();
+    // e.preventDefault();
     axios.put(`${process.env.REACT_APP_API_URL}/posts/${id}`, {
       Body: content,
       Title: title,
       Topic: topic,
       Abstract: abstract
+    }, {
+      withCredentials: true
     });
     navigate('/blogs');
   }
