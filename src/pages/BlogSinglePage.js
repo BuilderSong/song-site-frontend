@@ -13,30 +13,39 @@ import Footer from '../components/Footer';
 
 function BlogSinglePage() {
 
+  const [post, setPost] = useState([]);
+  const { id } = useParams();
+
   const preload_func = () => {
     getSinglePost(id)
       .then(response => {
         if (response.data.post) {
-          // console.log(response.data.post)
           setPost(response.data.post)
         } else {
           alert('failed to load post')
         }
       });
+  }
 
-    setTimeout(() => {
+  const styleCodeArea = () => {
+    if (document.querySelectorAll('.ql-syntax')) {
       var codeBlocks = document.querySelectorAll('.ql-syntax')
       for (let i = 0; i < codeBlocks.length; i++) {
         hljs.highlightElement(codeBlocks[i])
       }
-    }, 340);
+    } else {
+      setTimeout(() => {
+        var codeBlocks = document.querySelectorAll('.ql-syntax')
+        for (let i = 0; i < codeBlocks.length; i++) {
+          hljs.highlightElement(codeBlocks[i])
+        }
+      }, 300);
+    }
   }
-
-  const [post, setPost] = useState([]);
-  const { id } = useParams();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(preload_func, [])
+  useEffect(styleCodeArea, [post])
 
   if (post.Title) {
     return (
